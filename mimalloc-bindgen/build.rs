@@ -1,15 +1,13 @@
 use std::env;
 
+// NOTE: I took this build.rs from https://github.com/purpleprotocol/mimalloc_rust/blob/master/libmimalloc-sys/Cargo.toml and edited it as needed.
+// mainly removed some parts im not going to use or dont want configured.
+
 fn main() {
     let mut build = cc::Build::new();
 
-    let version = if env::var("CARGO_FEATURE_V3").is_ok() {
-        "v3"
-    } else {
-        "v2"
-    };
-
     build.include("mimalloc/include");
+    // theres a few .h files in mimalloc src directory, so we need to include this too
     build.include("mimalloc/src");
     build.file("mimalloc/src/static.c");
 
@@ -18,10 +16,14 @@ fn main() {
     let target_vendor = env::var("CARGO_CFG_TARGET_VENDOR").expect("target_vendor not defined!");
     let target_arch = env::var("CARGO_CFG_TARGET_ARCH").expect("target_arch not defined!");
 
-    // if target_family != "windows" {
-    //     build.flag("-Wno-error=date-time");
-    // }
-    //
+    // TODO: I might move configuration of mimalloc to be done entirely at runtime, so that i can
+    // offload it to a json config file if i need to during development. Then on release i can
+    // translate a known good json config to compile time flags, as i assume being able to
+    // configure mimalloc at runtime with a config file (maybe?) a big security risk? though i have
+    // no idea and am most likely talking out my ass =P
+
+    // TODO: See if i actually need these flags, low priority, but want to keep compat so keeping
+    // uncommented
     if env::var_os("CARGO_FEATURE_OVERRIDE").is_some() {
         // Overriding malloc is only available on windows in shared mode, but we
         // only ever build a static lib.
@@ -34,10 +36,6 @@ fn main() {
         }
     }
 
-    // if env::var_os("CARGO_FEATURE_SECURE").is_some() {
-    //     build.define("MI_SECURE", "4");
-    // }
-    //
     let dynamic_tls = env::var("CARGO_FEATURE_LOCAL_DYNAMIC_TLS").is_ok();
 
     if target_family == "unix" && target_os != "haiku" {
