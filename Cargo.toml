@@ -2,15 +2,4 @@
 [workspace]
 edition = "2024"
 resolver = "3"
-members = ["blight-rs",
- # "blight-rs",
-"mimalloc-bindgen",
-]
-
-
-# [package]
-# name = "blight-rs"
-# version = "0.1.0"
-# edition = "2024"
-
-# [dependencies]
+members = ["blight-rs", "mimalloc-bindgen"]
