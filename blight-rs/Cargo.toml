@@ -23,4 +23,5 @@ license = "GPL-3"
 
 
 [dependencies]
+anyhow = { version = "1.0.100", default-features = false }
 mimalloc-bindgen = { path = "../mimalloc-bindgen/" }

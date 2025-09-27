@@ -1,4 +1,12 @@
 #![no_std]
+#![feature(allocator_api)]
+
+extern crate alloc;
+
+pub mod arena;
+pub mod gpa;
+pub mod mimalloc;
+pub mod temp;
 
 #[cfg(test)]
 mod test {
