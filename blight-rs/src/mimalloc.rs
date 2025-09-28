@@ -134,7 +134,7 @@ pub fn calloc(count: usize, size_bytes: usize) -> Option<NonNull<u8>> {
 
 /// Allocates with mimalloc_small if size_bytes is less than or equal to 1024 bytes on 64 bit systems ([MIMALLOC_SMALL_SIZE_MAX])
 /// panics if size_bytes >= [MIMALLOC_SMALL_SIZE_MAX]
-pub fn calloc_aligned(count: usizes, size_bytes: usize, align: usize) -> Option<NonNull<u8>> {
+pub fn calloc_aligned(count: usize, size_bytes: usize, align: usize) -> Option<NonNull<u8>> {
     let p = unsafe { mi_calloc_aligned(count, size_bytes, align).cast::<u8>() };
     NonNull::new(p)
 }
