@@ -1,12 +1,11 @@
 use core::{ffi::c_void, ptr::NonNull};
 
-use alloc::{alloc::Allocator, boxed::Box, rc::Rc};
+use alloc::alloc::Allocator;
 use anyhow::{Context, ensure};
 use mimalloc_bindgen::api::{
     MI_SMALL_WSIZE_MAX, mi_calloc, mi_calloc_aligned, mi_heap_calloc, mi_heap_calloc_aligned,
     mi_heap_delete, mi_heap_malloc, mi_heap_malloc_aligned, mi_heap_malloc_small, mi_heap_new,
-    mi_heap_t, mi_malloc, mi_malloc_small, mi_reallocarray, mi_recalloc, mi_rezalloc, mi_zalloc,
-    mi_zalloc_small,
+    mi_heap_t, mi_malloc, mi_malloc_small, mi_recalloc,
 };
 
 // NOTE: bindgen didnt seem to be able to generate MI_SMALL_SIZE_MAX, so this is custom impl
