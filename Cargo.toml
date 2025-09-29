@@ -1,5 +1,6 @@
 
 [workspace]
 edition = "2024"
+version = "0.1.1"
 resolver = "3"
 members = ["blight-rs", "mimalloc-bindgen"]
