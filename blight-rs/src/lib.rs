@@ -3,10 +3,11 @@
 
 extern crate alloc;
 
+mod api;
 pub mod arena;
 pub mod gpa;
+pub mod heap;
 pub mod mimalloc;
-pub mod temp;
 
 #[cfg(test)]
 mod test {
@@ -15,10 +16,8 @@ mod test {
 
     use mimalloc_bindgen::api::{mi_free, mi_malloc_aligned};
 
-    use super::*;
-
     #[test]
-    fn alloc_and_free() {
+    fn internal_mimalloc_malloc_and_free() {
         let p = unsafe { mi_malloc_aligned(8, 8) } as *mut u8;
         let p = NonNull::new(p).expect("mi_malloc_aligned(8,8) returned nullptr!");
         unsafe { NonNull::write(p, 255) };
