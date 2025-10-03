@@ -1,7 +1,7 @@
 #![feature(allocator_api)]
-use std::{alloc::GlobalAlloc, rc::Rc};
 
 use blight_rs::{gpa::MiMallocator, heap::alloc::Heap};
+use std::rc::Rc;
 
 #[global_allocator]
 static GLOBAL: MiMallocator = MiMallocator;
