@@ -23,5 +23,6 @@ license = "GPL-3"
 
 
 [dependencies]
-anyhow = { version = "1.0.100", default-features = false }
+anyhow = { workspace = true }
+bytemuck = { workspace = true }
 mimalloc-bindgen = { path = "../mimalloc-bindgen/" }

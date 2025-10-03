@@ -8,6 +8,8 @@ pub mod arena;
 pub mod gpa;
 pub mod heap;
 pub mod mimalloc;
+pub mod osarena;
+pub mod units;
 
 #[cfg(test)]
 mod test {
