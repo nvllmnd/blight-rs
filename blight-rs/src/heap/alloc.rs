@@ -5,6 +5,7 @@ use core::{
     cell::Ref,
     ffi::c_void,
     marker::PhantomData,
+    ops::Deref,
     ptr::{NonNull, null_mut},
 };
 use mimalloc_bindgen::api::{

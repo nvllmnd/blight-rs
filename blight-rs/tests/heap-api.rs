@@ -42,3 +42,17 @@ fn heap_alloc_box_and_rc() {
         assert!(*bi == (i * i) as u8);
     }
 }
+
+#[test]
+fn global_strings_and_formating() {
+    let mut s = String::new();
+    s.push_str("hello mayteee");
+
+    println!("{}", s);
+
+    let x = 59;
+    let y = x.to_string();
+
+    assert_eq!("hello mayteee", s);
+    assert_eq!("59", y);
+}
