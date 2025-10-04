@@ -4,3 +4,8 @@ edition = "2024"
 version = "0.1.1"
 resolver = "3"
 members = ["blight-rs", "mimalloc-bindgen"]
+
+
+[workspace.dependencies]
+anyhow = { version = "1.0.100", default-features = false }
+bytemuck = { version = "1.23.2", default-features = false }
