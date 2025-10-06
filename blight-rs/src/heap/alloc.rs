@@ -1,22 +1,12 @@
 use alloc::alloc::Allocator;
 use anyhow::{Context, ensure};
-use core::{
-    borrow::Borrow,
-    cell::Ref,
-    ffi::c_void,
-    marker::PhantomData,
-    ops::Deref,
-    ptr::{NonNull, null_mut},
-};
+use core::ptr::{NonNull, null_mut};
 use mimalloc_bindgen::api::{
     mi_arena_area, mi_heap_delete, mi_heap_destroy, mi_heap_get_backing, mi_heap_new, mi_heap_new_ex,
     mi_heap_t, mi_malloc, mi_reserve_os_memory, mi_reserve_os_memory_ex,
 };
 
-use crate::{
-    api::VoidPtr,
-    heap::{InnerHeap, handle::HeapHandle},
-};
+use crate::heap::{InnerHeap, handle::HeapHandle};
 
 /// An abstraction over mimalloc's heap_id api, which allows for heaps to reclaim memory
 /// between heaps with the same tag
